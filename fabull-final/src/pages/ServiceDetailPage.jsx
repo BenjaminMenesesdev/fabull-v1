@@ -3,10 +3,36 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, CheckCircle } from 'lucide-react'
 
 const serviceData = {
-  'ultima-milla': { title: 'ÚLTIMA MILLA',  subtitle: 'Entrega express que supera expectativas', description: 'Nuestra solución de última milla está diseñada para garantizar que cada paquete llegue en el menor tiempo posible, con trazabilidad completa.',     features: ['Entrega en 2-4 horas','Confirmación por foto','Soporte 24/7','Cobertura metropolitana','Integración con tu plataforma'] },
-  'tracking':     { title: 'TRACKING GPS',  subtitle: 'Visibilidad total de tu operación',        description: 'Monitorea cada envío en tiempo real desde tu dashboard. Tus clientes reciben notificaciones automáticas y un enlace de seguimiento.',               features: ['Mapa en tiempo real','Notificaciones SMS/email','ETA preciso','Historial completo','API disponible','Webhooks configurables'] },
-  'fulfillment':  { title: 'FULFILLMENT',   subtitle: 'Logística completa sin esfuerzo',          description: 'Desde la recepción de stock hasta la entrega al cliente final. Nos encargamos de almacenaje, picking, packing y despacho.',                        features: ['Almacenamiento seguro','Picking y packing','Control de stock','Informes de inventario','Devoluciones gestionadas','Embalaje personalizable'] },
-  'analytics':    { title: 'ANALYTICS',     subtitle: 'Datos que impulsan decisiones',            description: 'Dashboard completo con todas las métricas de tu operación logística. Identifica cuellos de botella y optimiza rutas continuamente.',              features: ['Dashboard en tiempo real','Tasa de éxito por zona','Tiempo promedio de entrega','Reportes exportables','Alertas automáticas','Análisis de tendencias'] },
+  'reparto-locales': {
+    title: 'REPARTO A LOCALES',
+    subtitle: 'Insumos y mercadería directo a tus puntos de venta',
+    description: 'Llevamos insumos y mercadería directo a tus locales y tiendas, con flota propia y disponibilidad flexible de horarios, incluido turno nocturno.',
+    features: ['Flota propia (Peugeot Partner y Boxer)', 'Disponibilidad de horarios flexible', 'Turno nocturno disponible', 'Cobertura Región Metropolitana', 'Experiencia en retail y farmacias'],
+  },
+  'ultima-milla': {
+    title: 'DISTRIBUCIÓN ÚLTIMA MILLA',
+    subtitle: 'Desde tu bodega hasta el destino final',
+    description: 'Distribución de última milla con trazabilidad completa: cada despacho pasa por nuestra plataforma de seguimiento, web y aplicación de entrega.',
+    features: ['Seguimiento en tiempo real (recogido, en ruta, entregado)', 'Plataforma propia de tracking', 'Flota propia sin intermediarios', 'Cliente actual: DBS', 'Cobertura Región Metropolitana'],
+  },
+  'vehiculo-dedicado': {
+    title: 'VEHÍCULO DEDICADO',
+    subtitle: 'Furgón y chofer reservado para tu operación',
+    description: 'Arrienda un vehículo dedicado con chofer para tu operación, contratado por día o por mes, con la flexibilidad que tu negocio necesita.',
+    features: ['Contratación por día o por mes', 'Furgón tipo Partner o Boxer (13 m³)', 'Chofer incluido', 'Empresa formal (SpA) con facturación electrónica', 'Disponible de inmediato'],
+  },
+  'fletes-puntuales': {
+    title: 'FLETES PUNTUALES',
+    subtitle: 'Despachos puerta a puerta cuando los necesites',
+    description: 'Fletes puntuales origen-destino, sin contratos de largo plazo, para cuando tu operación necesita un despacho puntual y confiable.',
+    features: ['Despachos puerta a puerta', 'Sin compromisos de largo plazo', 'Cobertura Región Metropolitana', 'Viajes fuera de Santiago según acuerdo', 'Respuesta rápida por WhatsApp'],
+  },
+  'ruta-multipunto': {
+    title: 'RUTA MULTIPUNTO',
+    subtitle: 'Varias entregas coordinadas en un mismo recorrido',
+    description: 'Coordinamos varias entregas en un mismo recorrido, optimizando tiempos y costos para reparto a múltiples locales o direcciones.',
+    features: ['Varias entregas en un mismo viaje', 'Optimización de rutas', 'Ideal para reparto a múltiples locales', 'Cliente actual: Glam & Co', 'Flota propia y disponible de inmediato'],
+  },
 }
 
 export default function ServiceDetailPage() {
@@ -34,7 +60,7 @@ export default function ServiceDetailPage() {
               </motion.div>
             ))}
           </div>
-          <Link to="/contacto" className="service-detail__cta">Solicitar este servicio →</Link>
+          <a href="https://wa.me/56992205612?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20este%20servicio" target="_blank" rel="noopener noreferrer" className="service-detail__cta">Consultar por WhatsApp →</a>
         </motion.div>
       </div>
     </main>
