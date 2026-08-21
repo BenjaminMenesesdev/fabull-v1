@@ -16,7 +16,7 @@ export default function Contact() {
             <p className="contact-section__desc">Cuéntanos sobre tu operación y te diseñamos una solución a medida. Respuesta directa por WhatsApp.</p>
             <div className="contact-section__actions">
               <a href="https://wa.me/56992205612?text=Hola%2C%20quiero%20conversar%20sobre%20mi%20operaci%C3%B3n" className="contact-section__btn" target="_blank" rel="noopener noreferrer">
-                Conversemos por WhatsApp <WhatsAppIcon size={18} color="#25D366" />
+                Contáctanos por nuestro WhatsApp <WhatsAppIcon size={18} color="#25D366" />
               </a>
             </div>
           </motion.div>
