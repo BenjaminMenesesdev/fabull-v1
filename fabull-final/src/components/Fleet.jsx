@@ -2,12 +2,13 @@ import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Truck } from 'lucide-react'
 
-// TODO: agrega las fotos en /public (ej: /flota/partner.jpg) y reemplaza el campo "image" de cada vehiculo.
+// TODO: agrega las fotos reales en /public (ej: /flota/partner.jpg) y reemplaza el campo "image".
+// Modelos segun flota real de Transportes Fabull SpA.
 const vehiculos = [
-  { id: 'partner-l1', nombre: 'Peugeot Partner', anio: 2026, badge: 'FURGÓN · L1', uso: 'Última milla', estado: 'En flota', image: null },
-  { id: 'berlingo-m', nombre: 'Citroën Berlingo', anio: 2021, badge: 'FURGÓN · M', uso: 'Reparto a locales', estado: 'En flota', image: null },
-  { id: 'partner-maxi', nombre: 'Peugeot Partner Maxi', anio: 2016, badge: 'FURGÓN · MAXI', uso: 'Última milla', estado: 'En flota', image: null },
-  { id: 'boxer-l3', nombre: 'Peugeot Boxer', anio: 2022, badge: 'FURGÓN · L3', uso: 'Carga mayor', estado: 'En flota', image: null },
+  { id: 'partner-1', nombre: 'Peugeot Partner', badge: 'FURGÓN LIVIANO', uso: 'Reparto ágil entre locales', capacidad: 'Furgón liviano', estado: 'En flota', image: null },
+  { id: 'partner-2', nombre: 'Peugeot Partner', badge: 'FURGÓN LIVIANO', uso: 'Reparto ágil entre locales', capacidad: 'Furgón liviano', estado: 'En flota', image: null },
+  { id: 'partner-3', nombre: 'Peugeot Partner', badge: 'FURGÓN LIVIANO', uso: 'Reparto ágil entre locales', capacidad: 'Furgón liviano', estado: 'En flota', image: null },
+  { id: 'boxer-1', nombre: 'Peugeot Boxer', badge: 'MAYOR VOLUMEN', uso: 'Despachos con más carga en una sola vuelta', capacidad: '13 m³', estado: 'En flota', image: null },
 ]
 
 export default function Fleet() {
@@ -63,11 +64,11 @@ export default function Fleet() {
                 </div>
                 <span className="fleet-carousel__badge">{v.badge}</span>
                 <h3 className="fleet-carousel__name">{v.nombre}</h3>
-                <span className="fleet-carousel__year">{v.anio}</span>
+                <p className="fleet-carousel__uso-text">{v.uso}</p>
                 <div className="fleet-carousel__specs">
                   <div>
-                    <span className="fleet-carousel__label">Uso</span>
-                    <span className="fleet-carousel__value">{v.uso}</span>
+                    <span className="fleet-carousel__label">Capacidad</span>
+                    <span className="fleet-carousel__value">{v.capacidad}</span>
                   </div>
                   <div>
                     <span className="fleet-carousel__label">Estado</span>
