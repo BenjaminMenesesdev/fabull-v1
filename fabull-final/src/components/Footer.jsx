@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="footer__brand">
           <div className="footer__logo">
             <span className="footer__logo-icon">
-              <BullLogo size={32} />
+              <BullLogo size={72} />
             </span>
             <span className="footer__logo-text-wrap">
               FABULL<br /><small>TRANSPORTE</small>
