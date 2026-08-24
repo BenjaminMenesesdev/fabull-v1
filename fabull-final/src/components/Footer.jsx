@@ -10,8 +10,12 @@ export default function Footer() {
       <div className="container footer__top">
         <div className="footer__brand">
           <div className="footer__logo">
-            <BullLogo size={28} />
-            <span>FABULL<br /><small>TRANSPORTE</small></span>
+            <span className="footer__logo-icon">
+              <BullLogo size={32} />
+            </span>
+            <span className="footer__logo-text-wrap">
+              FABULL<br /><small>TRANSPORTE</small>
+            </span>
           </div>
           <p className="footer__tagline">Reparto que se sigue, no que se explica.</p>
           <div className="footer__contact">
