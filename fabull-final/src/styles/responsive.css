@@ -767,3 +767,38 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(79,179,232,0.3);
 }
+
+
+/* ===== FIX v8: pesos de letra mas livianos en titulos de card (menos negrita) ===== */
+.service-card__title {
+  font-weight: 700 !important;
+}
+.fleet-carousel__name {
+  font-weight: 700 !important;
+}
+.about__highlight h3 {
+  font-weight: 700 !important;
+}
+
+/* ===== FIX v8: "VEHICULOS DISPONIBLES" -- estilo real de titulo de seccion ===== */
+.fleet-carousel__overline {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #4FB3E8;
+  text-transform: uppercase;
+  font-family: var(--font-body, 'Barlow', sans-serif);
+  margin-bottom: 0.4rem;
+}
+.fleet-carousel__title {
+  font-family: var(--font-display, 'Barlow Condensed', sans-serif) !important;
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  font-weight: 900 !important;
+  line-height: 1.05;
+  color: #0d1f3c;
+  margin: 0.3rem 0 2rem;
+}
+.fleet-carousel__title span {
+  color: #4FB3E8;
+}
