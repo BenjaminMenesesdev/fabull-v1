@@ -494,3 +494,68 @@
     font-size: 0.75rem;
   }
 }
+
+
+/* ===== FIX v3: Services grid fluido -- se adapta a cualquier ancho, no solo breakpoints fijos ===== */
+.services__grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+  gap: 1.5rem;
+}
+.services__grid .service-card:last-child:nth-child(5) {
+  grid-column: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* ===== FIX v3: About -- no forzar tipografia, heredar la fuente/weight global del sitio ===== */
+.about__title {
+  font-family: inherit;
+  font-weight: inherit;
+}
+.about__overline,
+.about__text,
+.about__badge,
+.about__highlight h3,
+.about__highlight p,
+.about__highlight-n {
+  font-family: inherit;
+}
+
+/* ===== FIX v3: Contact info -- WhatsApp y Cobertura uno al lado del otro, responsive ===== */
+.contact-section__info {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: flex-start;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.contact-section__info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  flex: 0 1 auto;
+}
+
+@media (max-width: 480px) {
+  .contact-section__info {
+    gap: 1.25rem;
+  }
+  .contact-section__info-item {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .contact-section__label {
+    font-size: 0.62rem;
+  }
+  .contact-section__info-item p {
+    font-size: 0.82rem;
+  }
+  .contact-section__icon {
+    width: 34px;
+    height: 34px;
+  }
+}
