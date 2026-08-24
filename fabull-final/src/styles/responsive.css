@@ -559,3 +559,86 @@
     height: 34px;
   }
 }
+
+
+/* ===== FIX v4: Fleet -- todas las cards visibles, sin carrusel ni flecha ===== */
+.fleet-carousel__wrap,
+.fleet-carousel__track {
+  display: none !important;
+}
+.fleet-carousel__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.fleet-carousel__nav,
+.fleet-carousel button[class*="arrow"],
+.fleet-carousel button[class*="nav"],
+.fleet-carousel__dots {
+  display: none !important;
+}
+
+
+/* ===== FIX v5: tipografia correcta -- usar variables reales del proyecto (Barlow Condensed / Barlow) ===== */
+.about__title,
+.contact-section__title,
+.services__title,
+.service-card__title,
+.fleet-carousel__title,
+.fleet-carousel__name {
+  font-family: var(--font-display, 'Barlow Condensed', sans-serif) !important;
+  font-weight: 900 !important;
+}
+.about__overline,
+.about__text,
+.about__badge,
+.about__highlight p,
+.contact-section__overline,
+.contact-section__desc,
+.contact-section__label,
+.contact-section__info-item p,
+.services__overline,
+.service-card__text,
+.service-card__badge,
+.service-card__link {
+  font-family: var(--font-body, 'Barlow', sans-serif) !important;
+}
+.about__highlight h3,
+.about__highlight-n {
+  font-family: var(--font-display, 'Barlow Condensed', sans-serif) !important;
+}
+
+/* ===== FIX v5: Contact info -- separacion clara entre WhatsApp y Cobertura, uno al lado del otro ===== */
+.contact-section__info {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: clamp(2.5rem, 6vw, 5rem) !important;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+.contact-section__info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: left;
+}
+
+@media (max-width: 480px) {
+  .contact-section__info {
+    gap: 1.75rem !important;
+  }
+  .contact-section__label {
+    font-size: 0.62rem;
+  }
+  .contact-section__info-item p {
+    font-size: 0.82rem;
+  }
+  .contact-section__icon {
+    width: 34px;
+    height: 34px;
+  }
+}
