@@ -689,3 +689,81 @@
   margin-left: auto;
   gap: clamp(2.5rem, 6vw, 5rem);
 }
+
+
+/* ===== FIX v7: tamanios de titulo mas fieles al original (evita sensacion de comprimido) ===== */
+.service-card__title {
+  font-size: clamp(1.5rem, 3vw, 2rem) !important;
+  letter-spacing: 0.005em;
+}
+.fleet-carousel__name {
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem) !important;
+}
+.about__highlight h3 {
+  font-size: clamp(1.1rem, 2vw, 1.4rem) !important;
+}
+.about__highlight-n {
+  font-size: clamp(1.6rem, 3vw, 2.2rem) !important;
+}
+
+/* ===== FIX v7: Footer -- logo mas grande y visible ===== */
+.footer__logo-icon {
+  width: clamp(56px, 8vw, 88px);
+  height: clamp(56px, 8vw, 88px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__logo-icon svg,
+.footer__logo-icon img {
+  width: 100%;
+  height: 100%;
+}
+.footer__logo {
+  gap: 1rem;
+}
+.footer__logo-text-wrap {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
+/* ===== FIX v7: Services -- borde tipo hairline sutil (como fabull.cl), no un recuadro marcado ===== */
+.service-card {
+  border: 1px solid #d9e6f0 !important;
+  border-radius: 8px !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(13,31,60,0.10);
+  border-color: #4FB3E8;
+}
+
+/* ===== FIX v7: Fleet -- mismas animaciones hover que Services ===== */
+.fleet-carousel__card {
+  border: 1px solid #d9e6f0;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.fleet-carousel__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(13,31,60,0.10);
+  border-color: #4FB3E8;
+}
+
+/* ===== FIX v7: Reviews ("clientes que confian") -- animacion hover en la card ===== */
+.reviews__card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.reviews__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(13,31,60,0.10);
+}
+
+/* ===== FIX v7: Contacto -- boton con la misma animacion de elevacion que el resto del sitio ===== */
+.contact-section__btn {
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.contact-section__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(79,179,232,0.3);
+}
