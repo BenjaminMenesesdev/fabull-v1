@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, CheckCircle } from 'lucide-react'
+import WhatsAppIcon from '../../components/WhatsAppIcon'
 
 const serviceData = {
   'reparto-locales': {
@@ -60,7 +61,15 @@ export default function ServiceDetailPage() {
               </motion.div>
             ))}
           </div>
-          <a href="https://wa.me/56992205612?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20este%20servicio" target="_blank" rel="noopener noreferrer" className="service-detail__cta">Consultar por WhatsApp →</a>
+          <a
+            href="https://wa.me/56992205612?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20este%20servicio"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="service-detail__cta"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+          >
+            Consultar por WhatsApp <WhatsAppIcon size={18} color="#25D366" />
+          </a>
         </motion.div>
       </div>
     </main>
