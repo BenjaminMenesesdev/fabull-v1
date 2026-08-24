@@ -642,3 +642,50 @@
     height: 34px;
   }
 }
+
+
+/* ===== FIX v6: Footer -- logo visible, links con color correcto (mayor especificidad), fondo menos oscuro, columnas mas a la derecha ===== */
+.footer {
+  background: #14264a !important;
+}
+.footer__logo-icon {
+  display: inline-flex;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+.footer__logo-text-wrap {
+  font-family: var(--font-display, 'Barlow Condensed', sans-serif);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #fff;
+  line-height: 1.1;
+}
+.footer__logo-text-wrap small {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #4FB3E8;
+}
+
+.footer .footer__col a.footer__contact-item,
+.footer a.footer__contact-item,
+.footer span.footer__contact-item {
+  color: #d8dce2 !important;
+}
+.footer .footer__col a.footer__contact-item:hover,
+.footer a.footer__contact-item:hover {
+  color: #4FB3E8 !important;
+}
+.footer .footer__col a.footer__contact-item svg,
+.footer a.footer__contact-item svg,
+.footer span.footer__contact-item svg {
+  color: #d8dce2 !important;
+}
+
+.footer__top {
+  justify-content: space-between;
+}
+.footer__links {
+  margin-left: auto;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
