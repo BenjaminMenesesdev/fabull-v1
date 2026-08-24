@@ -14,8 +14,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 320px;
 }
 
+/* Footer: texto discreto por defecto, se ilumina en hover */
 .footer__contact {
   display: flex;
   flex-direction: column;
@@ -27,13 +29,52 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
-  color: inherit;
-  opacity: 0.85;
+  color: #d8dce2;
+  opacity: 1;
   text-decoration: none;
 }
-.footer__contact-item:hover {
+.footer__contact-item svg {
+  color: #d8dce2;
+  transition: color 0.2s ease;
+}
+.footer__contact-item:hover,
+.footer__contact-item:hover svg {
   color: var(--blue, #4FB3E8);
-  opacity: 1;
+}
+
+/* Contraste del icono WhatsApp en el bloque de info de Contact (fondo oscuro) */
+.contact-section__icon {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+.contact-section__icon svg {
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.4));
+}
+
+/* Reviews / "Clientes que confían en nosotros": centrado tipo bloque uniforme */
+.reviews__carousel {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.reviews__card {
+  width: 100%;
+}
+
+
+/* Services grid: evita que el ultimo item huerfano herede el fondo del contenedor */
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.services__grid .service-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: 320px;
+  margin: 0 auto;
 }
 
 /* ===== Responsividad global: movil pequeno / grande, tablet, notebook, monitor ===== */
