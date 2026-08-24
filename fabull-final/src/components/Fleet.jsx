@@ -8,6 +8,7 @@ const vehicles = [
     use: 'Reparto ágil entre locales',
     capacity: 'Furgón liviano',
     status: 'En flota',
+    image: '/peugeot-partner.jpg',
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const vehicles = [
     use: 'Reparto ágil entre locales',
     capacity: 'Furgón liviano',
     status: 'En flota',
+    image: '/peugeot-partner.jpg',
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ const vehicles = [
     use: 'Reparto ágil entre locales',
     capacity: 'Furgón liviano',
     status: 'En flota',
+    image: '/peugeot-partner.jpg',
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ const vehicles = [
     use: 'Despachos con más carga en una sola vuelta',
     capacity: '13 m³',
     status: 'En flota',
+    image: '/peugeot-boxer.jpg',
   },
 ]
 
@@ -54,14 +58,7 @@ export default function Fleet() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
               <div className="fleet-carousel__image">
-                <div className="fleet-carousel__placeholder">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M3 13h2l1.5-4h9L17 13h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1" />
-                    <path d="M3 13v3a1 1 0 0 0 1 1h1" />
-                    <circle cx="7.5" cy="17.5" r="1.5" />
-                    <circle cx="17.5" cy="17.5" r="1.5" />
-                  </svg>
-                </div>
+                <img src={v.image} alt={v.name} loading="lazy" />
               </div>
               <span className="fleet-carousel__badge">{v.badge}</span>
               <h3 className="fleet-carousel__name">{v.name}</h3>

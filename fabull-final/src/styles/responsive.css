@@ -1,4 +1,33 @@
-/* ===== Ajustes de coherencia visual y contacto (footer, whatsapp) ===== */
+/* =====================================================================
+   responsive.css — Ajustes de layout, color, hover y responsividad.
+
+   IMPORTANTE (tipografía): este archivo NO redefine la tipografía de las
+   clases que ya existen en styles.css (la de main / fabull.cl, aprobada
+   por el cliente). Para las clases nuevas de la rama (fleet-carousel__*,
+   about__highlight*, service-card__text, etc.) se replican EXACTAMENTE
+   las convenciones tipográficas de main:
+     - Overlines:  11px / 700 / letter-spacing 0.2em / uppercase
+     - Títulos de sección: Barlow Condensed (var(--font-display)) / 900
+     - Títulos de card: var(--font-display) / 900 / clamp(24px, 3vw, 32px)
+     - Cuerpo: Barlow (var(--font-body)) / clamp(13px, 1.3vw, 15px)
+   ===================================================================== */
+
+/* =====================================================================
+   1. CONTACT — layout centrado (el markup nuevo usa __inner en vez de __layout)
+   ===================================================================== */
+.contact-section__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.contact-section__desc {
+  max-width: 480px; /* anula el max-width lateral de main, aquí va centrado */
+  margin-left: auto;
+  margin-right: auto;
+}
 .contact-section__actions {
   justify-content: center;
   display: flex;
@@ -10,6 +39,61 @@
   gap: 0.5rem;
   margin: 0 auto;
 }
+.contact-section__btn--whatsapp {
+  background: #25d366;
+  color: white;
+}
+.contact-section__btn--whatsapp:hover {
+  background: #1ebc59;
+}
+
+/* Info de contacto: WhatsApp y Cobertura lado a lado */
+.contact-section__info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 2rem;
+}
+.contact-section__info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: left;
+}
+/* Tipografía de main: .contact-section__label y .contact-section__value */
+.contact-section__label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.contact-section__info-item p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy);
+}
+/* Contraste del icono WhatsApp / MapPin en el bloque de info */
+.contact-section__icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  background: rgba(79, 179, 232, 0.12);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .contacto-page__form-wrap {
   display: flex;
   align-items: center;
@@ -17,74 +101,261 @@
   min-height: 320px;
 }
 
-/* Footer: texto discreto por defecto, se ilumina en hover */
-.footer__contact {
+/* =====================================================================
+   2. SERVICES — grid fluido y cards con fondo propio (sin recuadro huérfano)
+      Tipografía: la de main en styles.css (services__overline, services__title,
+      service-card__title). Solo se estilan las clases NUEVAS.
+   ===================================================================== */
+.services {
+  background: var(--bg);
+}
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  background: none;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+.services__title {
+  margin-bottom: clamp(40px, 6vw, 72px); /* espaciado del header de main */
+}
+.service-card {
+  background: var(--white);
+  border: 1px solid #d9e6f0;
+  border-radius: 8px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+  min-height: 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
-.footer__contact-item {
+.service-card:hover {
+  background: var(--white);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(13, 31, 60, 0.1);
+  border-color: #4FB3E8;
+}
+.service-card__icon {
+  background: #4FB3E818;
+  border: 1.5px solid #4FB3E830;
+  color: #2a8ac4;
+  flex-shrink: 0;
+}
+/* Badge: colores nuevos, tipografía de main (10px / 700 / 0.1em / uppercase) */
+.service-card__badge {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b6f76;
+  background: #f4f4f0;
+  border: none;
+  border-radius: 100px;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+/* Clase nueva __text: replica .service-card__desc de main */
+.service-card__text {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.3vw, 15px);
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0 0 24px;
+  flex-grow: 1;
+}
+/* Link: tipografía de main (13px / 700 / 0.06em / uppercase) */
+.service-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #2a8ac4;
+  text-decoration: none;
+  transition: gap var(--transition);
+}
+.service-card__link:hover { gap: 12px; }
+
+/* =====================================================================
+   3. ABOUT — layout de la rama, tipografía de main
+      (about__title y about__overline ya vienen de styles.css)
+   ===================================================================== */
+/* Clase nueva __text: replica .about__body de main */
+.about__text {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 300;
+  margin-bottom: 32px;
+  max-width: 46ch;
+}
+/* Clase nueva __badge: replica .about__tag de main */
+.about__badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.9rem;
-  color: #d8dce2;
-  opacity: 1;
-  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  border-left: 3px solid var(--blue);
+  padding-left: 16px;
 }
-.footer__contact-item svg {
-  color: #d8dce2;
-  transition: color 0.2s ease;
+.about__badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
 }
-.footer__contact-item:hover,
-.footer__contact-item:hover svg {
-  color: var(--blue, #4FB3E8);
-}
-
-/* Contraste del icono WhatsApp en el bloque de info de Contact (fondo oscuro) */
-.contact-section__icon {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
+.about__highlights {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
+  flex-direction: column;
 }
-.contact-section__icon svg {
-  filter: drop-shadow(0 0 1px rgba(0,0,0,0.4));
+.about__highlight {
+  display: flex;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.about__highlight:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+/* Número: replica .about__pillar-num de main */
+.about__highlight-n {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 900;
+  color: rgba(79, 179, 232, 0.2);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 48px;
+}
+/* Título: replica .about__pillar-title de main */
+.about__highlight h3 {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 800;
+  color: white;
+  margin: 0 0 6px;
+}
+/* Descripción: replica .about__pillar-desc de main */
+.about__highlight p {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.3vw, 15px);
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+  margin: 0;
 }
 
-/* Reviews / "Clientes que confían en nosotros": centrado tipo bloque uniforme */
-.reviews__carousel {
-  max-width: 720px;
-  margin: 0 auto;
+/* =====================================================================
+   4. FLEET (sección nueva) — tipografía calcada de las secciones de main
+   ===================================================================== */
+.fleet-carousel {
+  padding: clamp(60px, 10vw, 120px) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
 }
-.reviews__card {
-  width: 100%;
+/* Restos del carrusel antiguo: ocultos, la grilla fija es la vigente */
+.fleet-carousel__wrap,
+.fleet-carousel__track,
+.fleet-carousel__nav,
+.fleet-carousel button[class*="arrow"],
+.fleet-carousel button[class*="nav"],
+.fleet-carousel__dots {
+  display: none !important;
+}
+.fleet-carousel__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 0;
+}
+/* Overline: 11px / 700 / 0.2em, igual que services__overline de main */
+.fleet-carousel__overline {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 14px;
+}
+/* Título de sección: igual que services__title de main */
+.fleet-carousel__title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 88px);
+  font-weight: 900;
+  line-height: 0.9;
+  color: var(--navy);
+  margin: 0 0 clamp(40px, 6vw, 72px);
+}
+.fleet-carousel__title span {
+  color: var(--text-muted);
+  opacity: 0.3;
+}
+.fleet-carousel__card {
+  border: 1px solid #d9e6f0;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.fleet-carousel__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(13, 31, 60, 0.1);
+  border-color: #4FB3E8;
+}
+/* Badge: tipografía de main (10px / 700 / 0.1em / uppercase) */
+.fleet-carousel__badge {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+/* Nombre del vehículo: igual que service-card__title de main */
+.fleet-carousel__name {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 900;
+  color: var(--navy);
+  margin: 0 0 10px;
+  line-height: 1;
+}
+/* Texto de uso: igual que service-card__desc de main */
+.fleet-carousel__uso-text {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.3vw, 15px);
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+/* Specs: labels/values con la convención de contacto de main */
+.fleet-carousel__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.fleet-carousel__value {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
 }
 
-
-/* ===== FIX v2: Services -- fondo propio por card, sin recuadro huerfano en cualquier dispositivo ===== */
-.services {
-  background: transparent;
+/* =====================================================================
+   5. FOOTER — colores y layout de la rama, tipografía de main
+   ===================================================================== */
+.footer {
+  background: #14264a;
 }
-.services__grid {
-  background: none;
-}
-.service-card {
-  background: #ffffff;
-  border: 1px solid #e5e5e0;
-  border-radius: 14px;
-  box-sizing: border-box;
-}
-.services__grid .service-card:last-child:nth-child(5) {
-  grid-column: 1 / -1;
-  max-width: 340px;
-  margin: 0 auto;
-}
-
-/* ===== FIX v2: Footer -- color celeste-gris en todo excepto titulos EMPRESA/SERVICIOS ===== */
 .footer * {
   color: #d8dce2;
 }
@@ -95,301 +366,130 @@
 .footer a:hover svg {
   color: #4FB3E8;
 }
-.footer__col-title {
-  color: #4FB3E8 !important;
-}
-
-
-/* ===== Estilos de componentes: Services, About, Contact, Footer ===== */
-.services {
-  padding: 5rem 0;
-}
-.services__overline {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #4FB3E8;
-  text-transform: uppercase;
-}
-.services__title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 900;
-  margin: 0.5rem 0 2rem;
-}
-.services__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-}
-.service-card {
-  padding: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  min-height: 260px;
-}
-.service-card__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-  flex-wrap: wrap;
-}
-.service-card__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: #4FB3E818;
-  color: #2a8ac4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.service-card__badge {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #6b6f76;
-  background: #f4f4f0;
-  border-radius: 999px;
-  padding: 0.25rem 0.65rem;
-  white-space: nowrap;
-}
-.service-card__title {
-  font-size: 1.3rem;
-  font-weight: 800;
-  margin: 0 0 0.5rem;
-  line-height: 1.2;
-}
-.service-card__text {
-  font-size: 0.9rem;
-  color: #6b6f76;
-  line-height: 1.5;
-  flex-grow: 1;
-  margin: 0 0 1rem;
-}
-.service-card__link {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  color: #2a8ac4;
-  text-decoration: none;
-}
-
-.about {
-  padding: 5.5rem 0;
-  background: #0d1b3d;
-  color: #fff;
-}
-.about__layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3.5rem;
-  align-items: start;
-}
-.about__overline {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #4FB3E8;
-  text-transform: uppercase;
-}
-.about__title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  line-height: 1.05;
-  margin: 0.5rem 0 1.25rem;
-  color: #fff;
-}
-.about__title span {
-  color: #4FB3E8;
-}
-.about__text {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #c3c9d6;
-  max-width: 46ch;
-}
-.about__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-  font-size: 0.85rem;
-  color: #9aa3b5;
-  border-left: 2px solid #4FB3E8;
-  padding-left: 0.75rem;
-}
-.about__badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #4FB3E8;
-}
-.about__highlights {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-}
-.about__highlight {
-  display: flex;
-  gap: 1.25rem;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  padding-top: 1.25rem;
-}
-.about__highlight-n {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #4FB3E8;
-  flex-shrink: 0;
-}
-.about__highlight h3 {
-  margin: 0 0 0.35rem;
-  font-size: 1.05rem;
-  font-weight: 700;
-}
-.about__highlight p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #9aa3b5;
-  line-height: 1.5;
-}
-
-.contact-section {
-  padding: 5.5rem 0;
-}
-.contact-section__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto;
-}
-.contact-section__overline {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #4FB3E8;
-  text-transform: uppercase;
-}
-.contact-section__title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 900;
-  line-height: 1.05;
-  margin: 0.5rem 0 1rem;
-}
-.contact-section__title span {
-  color: #4FB3E8;
-}
-.contact-section__desc {
-  font-size: 1rem;
-  color: #6b6f76;
-  line-height: 1.6;
-  margin: 0 0 2rem;
-}
-.contact-section__info {
-  display: flex;
-  gap: 3rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.contact-section__info-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-align: left;
-}
-.contact-section__label {
-  display: block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #8a8f98;
-  text-transform: uppercase;
-}
-.contact-section__info-item p {
-  margin: 0.15rem 0 0;
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-
-.footer {
-  background: #0d1b3d;
-  padding: 3.5rem 0 1.5rem;
-}
 .footer__top {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
+  justify-content: space-between;
   gap: 3rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer__links {
+  margin-left: auto;
+  gap: clamp(2.5rem, 6vw, 5rem);
 }
 .footer__logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  font-weight: 800;
-  font-size: 1.05rem;
+  gap: 1rem;
+}
+.footer__logo-icon {
+  width: clamp(56px, 8vw, 88px);
+  height: clamp(56px, 8vw, 88px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+.footer__logo-icon svg,
+.footer__logo-icon img {
+  width: 100%;
+  height: 100%;
+}
+/* Logo texto: replica .footer__logo-text de main */
+.footer__logo-text-wrap {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
   color: #fff;
-  margin-bottom: 0.75rem;
+  line-height: 1.1;
 }
-.footer__logo small {
-  font-size: 0.6rem;
+/* Sub del logo: replica .footer__logo-sub de main */
+.footer__logo-text-wrap small {
+  font-family: var(--font-body);
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4FB3E8;
 }
+/* Tagline: tipografía de main (13px) */
 .footer__tagline {
-  font-size: 0.9rem;
-  margin: 0 0 1rem;
+  font-family: var(--font-body);
+  font-size: 13px;
+  margin: 0.75rem 0 1rem;
 }
-.footer__links {
+.footer__contact {
   display: flex;
-  gap: 3rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+/* Links / items de contacto: tipografía de main clamp(13px, 1.3vw, 15px) */
+.footer__contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.3vw, 15px);
+  color: #d8dce2 !important;
+  opacity: 1;
+  text-decoration: none;
+}
+.footer__contact-item svg {
+  color: #d8dce2 !important;
+  transition: color 0.2s ease;
+}
+.footer__contact-item:hover,
+.footer__contact-item:hover svg {
+  color: #4FB3E8 !important;
 }
 .footer__col {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 12px;
 }
+/* Título de columna: replica .footer__col-title de main */
 .footer__col-title {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin-bottom: 0.4rem;
+  color: #4FB3E8 !important;
 }
+/* Bottom: tipografía de main clamp(11px, 1.2vw, 13px) */
 .footer__bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.75rem;
-  padding-top: 1.5rem;
-  font-size: 0.8rem;
+}
+.footer__bottom .footer__contact-item {
+  font-size: clamp(11px, 1.2vw, 13px);
 }
 
-@media (max-width: 1023px) {
-  .about__layout {
-    grid-template-columns: 1fr;
-  }
+/* =====================================================================
+   6. REVIEWS — centrado y hover (tipografía intacta desde styles.css)
+   ===================================================================== */
+.reviews__carousel {
+  max-width: 720px;
+  margin: 0 auto;
 }
-@media (max-width: 767px) {
-  .contact-section__info {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  .footer__links {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+.reviews__card {
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.reviews__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(13, 31, 60, 0.1);
 }
 
-
-/* ===== Responsividad global: movil pequeno / grande, tablet, notebook, monitor ===== */
-
+/* =====================================================================
+   7. RESPONSIVIDAD GLOBAL — solo layout, sin tocar tamaños de fuente
+      (la tipografía de main ya escala sola con sus clamp())
+   ===================================================================== */
 @media (min-width: 1440px) {
   .container {
     max-width: 1280px;
@@ -398,44 +498,22 @@
   }
 }
 
-@media (max-width: 1439px) {
-  .services__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .fleet-carousel__track {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 @media (max-width: 1023px) {
-  .services__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-  .fleet-carousel__track {
-    grid-template-columns: repeat(2, 1fr);
+  .about__layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
   .contacto-page__layout,
   .footer__top {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .hero__title {
-    font-size: clamp(2.5rem, 8vw, 4rem);
+  .footer__links {
+    margin-left: 0;
   }
 }
 
 @media (max-width: 767px) {
-  .services__grid {
-    grid-template-columns: 1fr;
-  }
-  .fleet-carousel__track {
-    grid-template-columns: 1fr;
-  }
-  .fleet-carousel__wrap {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
   .navbar__nav {
     display: none;
   }
@@ -451,9 +529,8 @@
     width: 100%;
     text-align: center;
   }
-  .footer__top {
-    flex-direction: column;
-    gap: 2rem;
+  .contact-section__info {
+    gap: 1.75rem;
   }
   .footer__links {
     flex-direction: column;
@@ -469,19 +546,6 @@
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  .hero__title {
-    font-size: clamp(2rem, 10vw, 3rem);
-  }
-  .hero__sub {
-    font-size: 0.9rem;
-  }
-  .services__title,
-  .reviews__title,
-  .about__title,
-  .contact-section__title,
-  .contacto-page__title {
-    font-size: clamp(1.8rem, 9vw, 2.4rem);
-  }
   .service-card,
   .fleet-carousel__card {
     padding: 1rem;
@@ -490,315 +554,8 @@
     width: 48px;
     height: 48px;
   }
-  .ticker__item {
-    font-size: 0.75rem;
-  }
-}
-
-
-/* ===== FIX v3: Services grid fluido -- se adapta a cualquier ancho, no solo breakpoints fijos ===== */
-.services__grid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
-  gap: 1.5rem;
-}
-.services__grid .service-card:last-child:nth-child(5) {
-  grid-column: auto !important;
-  max-width: none !important;
-  margin: 0 !important;
-}
-
-/* ===== FIX v3: About -- no forzar tipografia, heredar la fuente/weight global del sitio ===== */
-.about__title {
-  font-family: inherit;
-  font-weight: inherit;
-}
-.about__overline,
-.about__text,
-.about__badge,
-.about__highlight h3,
-.about__highlight p,
-.about__highlight-n {
-  font-family: inherit;
-}
-
-/* ===== FIX v3: Contact info -- WhatsApp y Cobertura uno al lado del otro, responsive ===== */
-.contact-section__info {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: center !important;
-  align-items: flex-start;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  width: 100%;
-}
-.contact-section__info-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-align: left;
-  flex: 0 1 auto;
-}
-
-@media (max-width: 480px) {
-  .contact-section__info {
-    gap: 1.25rem;
-  }
-  .contact-section__info-item {
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-  .contact-section__label {
-    font-size: 0.62rem;
-  }
-  .contact-section__info-item p {
-    font-size: 0.82rem;
-  }
   .contact-section__icon {
-    width: 34px;
-    height: 34px;
+    width: 40px;
+    height: 40px;
   }
-}
-
-
-/* ===== FIX v4: Fleet -- todas las cards visibles, sin carrusel ni flecha ===== */
-.fleet-carousel__wrap,
-.fleet-carousel__track {
-  display: none !important;
-}
-.fleet-carousel__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-.fleet-carousel__nav,
-.fleet-carousel button[class*="arrow"],
-.fleet-carousel button[class*="nav"],
-.fleet-carousel__dots {
-  display: none !important;
-}
-
-
-/* ===== FIX v5: tipografia correcta -- usar variables reales del proyecto (Barlow Condensed / Barlow) ===== */
-.about__title,
-.contact-section__title,
-.services__title,
-.service-card__title,
-.fleet-carousel__title,
-.fleet-carousel__name {
-  font-family: var(--font-display, 'Barlow Condensed', sans-serif) !important;
-  font-weight: 900 !important;
-}
-.about__overline,
-.about__text,
-.about__badge,
-.about__highlight p,
-.contact-section__overline,
-.contact-section__desc,
-.contact-section__label,
-.contact-section__info-item p,
-.services__overline,
-.service-card__text,
-.service-card__badge,
-.service-card__link {
-  font-family: var(--font-body, 'Barlow', sans-serif) !important;
-}
-.about__highlight h3,
-.about__highlight-n {
-  font-family: var(--font-display, 'Barlow Condensed', sans-serif) !important;
-}
-
-/* ===== FIX v5: Contact info -- separacion clara entre WhatsApp y Cobertura, uno al lado del otro ===== */
-.contact-section__info {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: clamp(2.5rem, 6vw, 5rem) !important;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-top: 1.5rem;
-}
-.contact-section__info-item {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  text-align: left;
-}
-
-@media (max-width: 480px) {
-  .contact-section__info {
-    gap: 1.75rem !important;
-  }
-  .contact-section__label {
-    font-size: 0.62rem;
-  }
-  .contact-section__info-item p {
-    font-size: 0.82rem;
-  }
-  .contact-section__icon {
-    width: 34px;
-    height: 34px;
-  }
-}
-
-
-/* ===== FIX v6: Footer -- logo visible, links con color correcto (mayor especificidad), fondo menos oscuro, columnas mas a la derecha ===== */
-.footer {
-  background: #14264a !important;
-}
-.footer__logo-icon {
-  display: inline-flex;
-  filter: brightness(0) invert(1);
-  opacity: 0.95;
-}
-.footer__logo-text-wrap {
-  font-family: var(--font-display, 'Barlow Condensed', sans-serif);
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  color: #fff;
-  line-height: 1.1;
-}
-.footer__logo-text-wrap small {
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: #4FB3E8;
-}
-
-.footer .footer__col a.footer__contact-item,
-.footer a.footer__contact-item,
-.footer span.footer__contact-item {
-  color: #d8dce2 !important;
-}
-.footer .footer__col a.footer__contact-item:hover,
-.footer a.footer__contact-item:hover {
-  color: #4FB3E8 !important;
-}
-.footer .footer__col a.footer__contact-item svg,
-.footer a.footer__contact-item svg,
-.footer span.footer__contact-item svg {
-  color: #d8dce2 !important;
-}
-
-.footer__top {
-  justify-content: space-between;
-}
-.footer__links {
-  margin-left: auto;
-  gap: clamp(2.5rem, 6vw, 5rem);
-}
-
-
-/* ===== FIX v7: tamanios de titulo mas fieles al original (evita sensacion de comprimido) ===== */
-.service-card__title {
-  font-size: clamp(1.5rem, 3vw, 2rem) !important;
-  letter-spacing: 0.005em;
-}
-.fleet-carousel__name {
-  font-size: clamp(1.3rem, 2.5vw, 1.7rem) !important;
-}
-.about__highlight h3 {
-  font-size: clamp(1.1rem, 2vw, 1.4rem) !important;
-}
-.about__highlight-n {
-  font-size: clamp(1.6rem, 3vw, 2.2rem) !important;
-}
-
-/* ===== FIX v7: Footer -- logo mas grande y visible ===== */
-.footer__logo-icon {
-  width: clamp(56px, 8vw, 88px);
-  height: clamp(56px, 8vw, 88px);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.footer__logo-icon svg,
-.footer__logo-icon img {
-  width: 100%;
-  height: 100%;
-}
-.footer__logo {
-  gap: 1rem;
-}
-.footer__logo-text-wrap {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-}
-
-/* ===== FIX v7: Services -- borde tipo hairline sutil (como fabull.cl), no un recuadro marcado ===== */
-.service-card {
-  border: 1px solid #d9e6f0 !important;
-  border-radius: 8px !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-}
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 32px rgba(13,31,60,0.10);
-  border-color: #4FB3E8;
-}
-
-/* ===== FIX v7: Fleet -- mismas animaciones hover que Services ===== */
-.fleet-carousel__card {
-  border: 1px solid #d9e6f0;
-  border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-.fleet-carousel__card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 32px rgba(13,31,60,0.10);
-  border-color: #4FB3E8;
-}
-
-/* ===== FIX v7: Reviews ("clientes que confian") -- animacion hover en la card ===== */
-.reviews__card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.reviews__card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 32px rgba(13,31,60,0.10);
-}
-
-/* ===== FIX v7: Contacto -- boton con la misma animacion de elevacion que el resto del sitio ===== */
-.contact-section__btn {
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-.contact-section__btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(79,179,232,0.3);
-}
-
-
-/* ===== FIX v8: pesos de letra mas livianos en titulos de card (menos negrita) ===== */
-.service-card__title {
-  font-weight: 700 !important;
-}
-.fleet-carousel__name {
-  font-weight: 700 !important;
-}
-.about__highlight h3 {
-  font-weight: 700 !important;
-}
-
-/* ===== FIX v8: "VEHICULOS DISPONIBLES" -- estilo real de titulo de seccion ===== */
-.fleet-carousel__overline {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #4FB3E8;
-  text-transform: uppercase;
-  font-family: var(--font-body, 'Barlow', sans-serif);
-  margin-bottom: 0.4rem;
-}
-.fleet-carousel__title {
-  font-family: var(--font-display, 'Barlow Condensed', sans-serif) !important;
-  font-size: clamp(2rem, 4vw, 3rem) !important;
-  font-weight: 900 !important;
-  line-height: 1.05;
-  color: #0d1f3c;
-  margin: 0.3rem 0 2rem;
-}
-.fleet-carousel__title span {
-  color: #4FB3E8;
 }
