@@ -16,14 +16,16 @@ export default function Fleet() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const [start, setStart] = useState(0)
   const visible = 3
+  const maxStart = Math.max(0, vehiculos.length - visible)
 
   const canPrev = start > 0
-  const canNext = start + visible < vehiculos.length
+  const canNext = start < maxStart
 
-  const prev = () => canPrev && setStart(s => s - 1)
-  const next = () => canNext && setStart(s => s + 1)
+  const prev = () => canPrev && setStart(s => Math.max(0, s - 1))
+  const next = () => canNext && setStart(s => Math.min(maxStart, s + 1))
 
   const visibleItems = vehiculos.slice(start, start + visible)
+  const dotsCount = maxStart + 1
 
   return (
     <section ref={ref} className="fleet-carousel">
@@ -91,11 +93,11 @@ export default function Fleet() {
         </div>
 
         <div className="reviews__dots" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
-          {vehiculos.map((_, i) => (
+          {Array.from({ length: dotsCount }).map((_, i) => (
             <button
               key={i}
               className={`reviews__dot${i === start ? ' active' : ''}`}
-              onClick={() => setStart(Math.min(i, vehiculos.length - visible))}
+              onClick={() => setStart(i)}
             />
           ))}
         </div>
