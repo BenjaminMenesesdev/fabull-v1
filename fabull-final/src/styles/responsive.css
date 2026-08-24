@@ -351,6 +351,29 @@
 }
 
 /* =====================================================================
+   4b. FLEET — ajuste puntual para las cards Peugeot Partner:
+       la foto original es más ancha que el contenedor de la card, así que
+       con "cover" se recortaban los bordes del furgón (techo/paragolpes).
+       Se usa "contain" + fondo blanco (igual al fondo de la foto) para que
+       se vea completa y centrada. También se baja el peso del título
+       (900 → 700) solo en estas cards, ya que en negrita máxima se veía
+       muy marcado / con sensación de recorte junto al badge.
+   ===================================================================== */
+.fleet-carousel__card--partner .fleet-carousel__image {
+  background: #ffffff;
+}
+.fleet-carousel__card--partner .fleet-carousel__image img {
+  object-fit: contain;
+  object-position: center;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.fleet-carousel__card--partner .fleet-carousel__name {
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+/* =====================================================================
    5. FOOTER — colores y layout de la rama, tipografía de main
    ===================================================================== */
 .footer {

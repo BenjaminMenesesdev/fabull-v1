@@ -51,7 +51,7 @@ export default function Fleet() {
           {vehicles.map((v, i) => (
             <motion.div
               key={v.id}
-              className="fleet-carousel__card"
+              className={`fleet-carousel__card${v.name.includes('Partner') ? ' fleet-carousel__card--partner' : ''}`}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
