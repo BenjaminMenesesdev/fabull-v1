@@ -1,12 +1,5 @@
 import { motion } from 'framer-motion'
 
-const team = [
-  { name: 'Ana Torres',  role: 'CEO & Co-founder', initial: 'A' },
-  { name: 'Luis Vega',   role: 'CTO',              initial: 'L' },
-  { name: 'Carmen S.',   role: 'Operaciones',       initial: 'C' },
-  { name: 'Diego F.',    role: 'Tecnología',        initial: 'D' },
-]
-
 export default function NosotrosPage() {
   return (
     <main className="nosotros-page">
@@ -16,10 +9,10 @@ export default function NosotrosPage() {
             Nuestra historia
           </motion.span>
           <motion.h1 className="nosotros-hero__title" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
-            NACIMOS PARA<br /><span>MOVER EL MUNDO</span>
+            TRANSPORTE Y DISTRIBUCIÓN<br /><span>DE ÚLTIMA MILLA</span>
           </motion.h1>
           <motion.p className="nosotros-hero__sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}>
-            Fabull nació de la frustración de ver cómo las empresas perdían clientes por fallas en la última milla. Decidimos construir la solución.
+            Transportes Fabull SpA es una empresa de transporte con base en Santiago, operando desde 2020. Nos especializamos en distribución de última milla y reparto de insumos y mercadería a locales y tiendas, con flota propia y disponibilidad flexible de horarios.
           </motion.p>
         </div>
       </div>
@@ -27,32 +20,15 @@ export default function NosotrosPage() {
         <div className="container">
           <div className="nosotros-mission__grid">
             {[
-              { label: 'Misión', text: 'Ser la red logística más confiable y eficiente de Chile, conectando negocios con sus clientes.' },
-              { label: 'Visión', text: 'Un mundo donde cualquier empresa, sin importar su tamaño, tiene acceso a logística de clase mundial.' },
-              { label: 'Valores', text: 'Velocidad, transparencia, innovación y un compromiso absoluto con el cliente.' },
+              { label: 'Misión', text: 'Entregar un servicio de transporte formal y confiable en la Región Metropolitana, con flota propia disponible de inmediato y flexibilidad de horarios, incluido turno nocturno.' },
+              { label: 'Visión', text: 'Ser la alternativa de referencia para retail y farmacias que necesitan última milla y reparto a locales, con la trazabilidad de un operador grande y el trato directo de uno chico.' },
+              { label: 'Valores', text: 'Formalidad (empresa SpA con facturación electrónica), experiencia comprobada en última milla y retail/farmacias, y flexibilidad total de horarios.' },
             ].map((item, i) => (
               <motion.div key={item.label} className="nosotros-mission__card"
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.12 }} viewport={{ once: true }}>
                 <span className="nosotros-mission__label">{item.label}</span>
                 <p>{item.text}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="nosotros-team">
-        <div className="container">
-          <h2 className="nosotros-team__title">EQUIPO</h2>
-          <div className="nosotros-team__grid">
-            {team.map((member, i) => (
-              <motion.div key={member.name} className="team-card"
-                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }} viewport={{ once: true }}
-                whileHover={{ y: -4 }}>
-                <div className="team-card__avatar">{member.initial}</div>
-                <div className="team-card__name">{member.name}</div>
-                <div className="team-card__role">{member.role}</div>
               </motion.div>
             ))}
           </div>
