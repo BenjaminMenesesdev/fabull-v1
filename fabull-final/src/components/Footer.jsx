@@ -1,66 +1,54 @@
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import BullLogo from './BullLogo'
+import WhatsAppIcon from './WhatsAppIcon'
+import { MapPin } from 'lucide-react'
 
 export default function Footer() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768)
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-  const footerLinks = [
-    {
-      title: 'Empresa',
-      items: [
-        { label: 'Nosotros', path: '/nosotros', enabled: true },
-        { label: 'Contacto', path: '/contacto', enabled: true },
-      ],
-    },
-    {
-      title: 'Servicios',
-      items: [
-        { label: 'Última Milla', path: '/servicios/ultima-milla', enabled: true },
-        { label: 'Tracking GPS', path: '/seguimiento', enabled: false },
-        { label: 'Fulfillment', path: '/servicios/fulfillment', enabled: true },
-        { label: 'Entrega Express', enabled: false },
-      ],
-    },
-  ]
-
+  const year = new Date().getFullYear()
   return (
     <footer className="footer">
-      <div className="container">
-        <div className="footer__top">
-          <div>
-            <Link to="/" className="footer__logo">
-              <img 
-                src={isMobile ? "/toro.png" : "/logo-fabull.png"} 
-                alt="Fabull Transporte" 
-                className="footer__logo-img" 
-              />
-            </Link>
-            <p className="footer__tagline">Última milla, primera prioridad.</p>
+      <div className="container footer__top">
+        <div className="footer__brand">
+          <div className="footer__logo">
+            <span className="footer__logo-icon">
+              <BullLogo size={72} />
+            </span>
+            <span className="footer__logo-text-wrap">
+              FABULL<br /><small>TRANSPORTE</small>
+            </span>
           </div>
-          <div className="footer__links">
-            {footerLinks.map((col) => (
-              <div key={col.title} className="footer__col">
-                <span className="footer__col-title">{col.title}</span>
-                {col.items.map((item) => (
-                  item.enabled
-                    ? item.path
-                      ? <Link key={item.label} to={item.path}>{item.label}</Link>
-                      : <span key={item.label} className="footer__link-disabled">{item.label}</span>
-                    : <span key={item.label} className="footer__link-disabled">{item.label}</span>
-                ))}
-              </div>
-            ))}
+          <p className="footer__tagline">Reparto que se sigue, no que se explica.</p>
+          <div className="footer__contact">
+            <a href="https://wa.me/56992205612" target="_blank" rel="noopener noreferrer" className="footer__contact-item">
+              <WhatsAppIcon size={16} />
+              +56 9 9220 5612
+            </a>
+            <span className="footer__contact-item">
+              <MapPin size={16} />
+              Región Metropolitana, Chile
+            </span>
           </div>
         </div>
-        <div className="footer__bottom">
-          <span>© {new Date().getFullYear()} Fabull SpA. Todos los derechos reservados.</span>
-          <span className="footer__speed">⚡ Entregamos más rápido</span>
+        <div className="footer__links">
+          <div className="footer__col">
+            <span className="footer__col-title">Empresa</span>
+            <Link to="/nosotros" className="footer__contact-item">Nosotros</Link>
+            <Link to="/contacto" className="footer__contact-item">Contacto</Link>
+            <Link to="/admin" className="footer__contact-item">Panel</Link>
+          </div>
+          <div className="footer__col">
+            <span className="footer__col-title">Servicios</span>
+            <Link to="/servicios/reparto-locales" className="footer__contact-item">Reparto a Locales</Link>
+            <Link to="/servicios/ultima-milla" className="footer__contact-item">Última Milla</Link>
+            <Link to="/servicios/vehiculo-dedicado" className="footer__contact-item">Vehículo Dedicado</Link>
+            <Link to="/servicios/fletes-puntuales" className="footer__contact-item">Fletes Puntuales</Link>
+            <Link to="/servicios/ruta-multipunto" className="footer__contact-item">Ruta Multipunto</Link>
+          </div>
         </div>
+      </div>
+      <div className="container footer__bottom">
+        <span className="footer__contact-item">© {year} Transportes Fabull SpA. Todos los derechos reservados.</span>
+        <span className="footer__contact-item">Región Metropolitana · Desde 2020</span>
       </div>
     </footer>
   )
